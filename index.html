@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Planner</title>
+    
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="https://placehold.co/192x192/4f46e5/ffffff?text=P">
+    <meta name="theme-color" content="#4f46e5"/>
+
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased overflow-hidden">
+
+    <div id="splash-screen" class="splash-screen fixed inset-0 bg-white z-50 flex flex-col items-center justify-center">
+        <h1 class="font-poppins text-5xl md:text-7xl font-bold text-indigo-600">My Planner</h1>
+        <p class="mt-8 text-xl md:text-2xl text-gray-500 font-medium">Developed by:- Abdulfetah</p>
+    </div>
+
+    <div class="h-screen w-screen flex flex-col p-4 md:p-6 max-w-7xl mx-auto opacity-0" id="app-container">
+        <header class="flex items-center justify-between pb-4 border-b border-gray-200">
+            <div class="flex items-center gap-3">
+                <span class="material-icons text-3xl text-indigo-600">event_note</span>
+                <h1 id="month-year" class="font-poppins text-2xl font-bold text-gray-800"></h1>
+            </div>
+            <div class="flex items-center gap-2">
+                <button id="prev-month" class="p-2 rounded-full hover:bg-gray-200 transition-colors">
+                    <span class="material-icons">chevron_left</span>
+                </button>
+                <button id="next-month" class="p-2 rounded-full hover:bg-gray-200 transition-colors">
+                    <span class="material-icons">chevron_right</span>
+                </button>
+            </div>
+        </header>
+
+        <main class="flex-grow overflow-y-auto pt-4">
+            <div class="calendar-grid text-center font-semibold text-gray-500 text-sm mb-2">
+                <div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>
+            </div>
+            <div id="calendar-grid" class="calendar-grid">
+                </div>
+        </main>
+    </div>
+
+    <div id="task-modal" class="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 opacity-0 pointer-events-none -translate-y-4">
+        <div id="modal-content" class="bg-white rounded-2xl shadow-xl w-full max-w-md p-6 transform transition-transform duration-300 scale-95">
+            <div class="flex items-center justify-between mb-4">
+                <h2 id="modal-date" class="font-poppins text-xl font-bold"></h2>
+                <button id="close-modal" class="p-2 rounded-full hover:bg-gray-200 transition-colors">
+                    <span class="material-icons">close</span>
+                </button>
+            </div>
+            
+            <div id="gemini-summary-container" class="mb-4">
+                <button id="gemini-summary-btn" class="gemini-btn w-full flex items-center justify-center gap-2">
+                    <span class="gemini-sparkle">✨</span>
+                    Get Daily Summary & Motivation
+                    <span class="gemini-sparkle">✨</span>
+                </button>
+                <div id="gemini-summary-output" class="text-sm text-gray-600 bg-indigo-50 p-3 rounded-lg mt-2 hidden"></div>
+            </div>
+
+            <div id="task-list" class="max-h-60 overflow-y-auto mb-4 pr-2">
+                </div>
+            
+            <div class="border-t border-gray-200 pt-4">
+                <div class="flex justify-between items-center mb-2">
+                    <h3 class="font-semibold text-lg">Add New Task</h3>
+                    <button id="gemini-breakdown-btn" class="gemini-btn hidden items-center gap-1 text-sm">
+                        <span class="gemini-sparkle">✨</span>
+                        Smart Breakdown
+                    </button>
+                </div>
+                 <div id="gemini-suggestions-container" class="hidden mb-2 space-y-2"></div>
+                
+                <input id="task-input" type="text" placeholder="What do you need to do?" class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mb-2 p-3" autocomplete="off">
+                <div class="grid grid-cols-2 gap-2">
+                    <input id="task-time" type="time" class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 p-3">
+                    <select id="task-sound" class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 p-3">
+                        <option value="beep">Beep</option>
+                        <option value="synth">Synth</option>
+                        <option value="chime">Chime</option>
+                    </select>
+                </div>
+                <button id="add-task-btn" class="mt-4 w-full bg-indigo-600 text-white font-semibold py-3 rounded-lg shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all duration-200">
+                    Add Task
+                </button>
+            </div>
+        </div>
+    </div>
+    
+     <div id="loading-spinner" class="fixed inset-0 bg-white bg-opacity-75 z-50 flex items-center justify-center hidden">
+        <div class="loader"></div>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.77/Tone.js"></script>
+    
+    <script src="script.js" type="module"></script>
+</body>
+</html>

@@ -1,0 +1,136 @@
+/* Custom CSS for a beautiful and smooth experience */
+body {
+    font-family: 'Inter', sans-serif;
+    -webkit-tap-highlight-color: transparent; /* Disable tap highlight on mobile */
+}
+
+.font-poppins { 
+    font-family: 'Poppins', sans-serif; 
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+}
+
+.calendar-day {
+    transition: all 0.2s ease-in-out;
+}
+
+.calendar-day.has-task::after {
+    content: '';
+    position: absolute;
+    bottom: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #4f46e5;
+}
+
+.calendar-day:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.splash-screen {
+    transition: opacity 0.5s ease-out;
+}
+
+.modal {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.task-item {
+    transition: background-color 0.2s;
+}
+
+.task-item:hover {
+    background-color: #f9fafb;
+}
+
+/* Gemini Feature Styles */
+.gemini-btn {
+    background: linear-gradient(45deg, #4f46e5, #818cf8);
+    color: white;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 9999px;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border: none;
+    cursor: pointer;
+}
+.gemini-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+.gemini-sparkle {
+    display: inline-block;
+    animation: sparkle-animation 1.5s infinite;
+}
+@keyframes sparkle-animation {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.2); opacity: 0.7; }
+}
+.suggestion-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f3f4f6;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+}
+.suggestion-item button {
+    background-color: #d1d5db;
+    color: #4b5563;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
+}
+.suggestion-item button:hover {
+    background-color: #9ca3af;
+    color: white;
+}
+
+
+/* Loading Spinner */
+.loader {
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #4f46e5;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+/* Custom scrollbar */
+::-webkit-scrollbar { 
+    width: 6px; 
+}
+
+::-webkit-scrollbar-track { 
+    background: #f1f1f1; 
+}
+
+::-webkit-scrollbar-thumb { 
+    background: #d1d5db; 
+    border-radius: 6px; 
+}
+
+::-webkit-scrollbar-thumb:hover { 
+    background: #9ca3af; 
+}
